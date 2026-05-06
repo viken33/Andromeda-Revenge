@@ -1,12 +1,12 @@
 using System;
 using UnityEngine;
 
-public class EnemyType1 : MonoBehaviour
+public class EnemyType1 : Enemy
 {
 
-  public float ySpeed = -5.0f;
-  public float xSpeed = -5.0f;
-  public float movementAmplitud = 15.0f;
+  
+  public float xSpeed = -15.0f;
+  public float movementAmplitude = 5.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,8 +16,13 @@ public class EnemyType1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Time.deltaTime * xSpeed, Time.deltaTime * movementAmplitud * ((float)Math.Sin(transform.position.x )),0);
-
+      Move();
     }
  
+
+    protected override void Move()
+  {
+    transform.Translate(xSpeed*Time.deltaTime,0,0);
+    transform.Translate(Time.deltaTime * xSpeed, Time.deltaTime * movementAmplitude * ((float)Math.Sin(transform.position.x )),0);
+  }
 }

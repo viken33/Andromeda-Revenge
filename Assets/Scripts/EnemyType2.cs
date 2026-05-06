@@ -2,12 +2,12 @@
 using UnityEngine;
 using System;
 
-public class EnemyType2 : MonoBehaviour
+public class EnemyType2 : Enemy
 {
 
   public float ySpeed = -5.0f;
   public float xSpeed = -5.0f;
-  public float movementAmplitud = 3.0f;
+  public float movementAmplitude = 3.0f;
   public EnemyBullet bulletsPrefab;
   public GameObject player;
   private Vector3 spawnPos;
@@ -24,17 +24,8 @@ public class EnemyType2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Time.deltaTime * xSpeed , Time.deltaTime * ySpeed, 0);
-      {  // Movement
-      if (transform.position.y > spawnPos.y + movementAmplitud)
-        {
-          ySpeed = -Math.Abs(ySpeed);
-        }
-      if (transform.position.y < spawnPos.y - movementAmplitud)
-        {
-          ySpeed = Math.Abs(ySpeed);
-        }
-      }
+       
+      Move();
 
 
        shootInterval = UnityEngine.Random.Range(2f, 4f);
@@ -45,10 +36,22 @@ public class EnemyType2 : MonoBehaviour
     }
       
     }
+  protected override void Move()
+  {
+     transform.Translate(Time.deltaTime * xSpeed , 0 , 0);
+     transform.Translate(Time.deltaTime * xSpeed , Time.deltaTime * ySpeed, 0);
+        // Movement
+      if (transform.position.y > spawnPos.y + movementAmplitude)
+        {
+          ySpeed = -Math.Abs(ySpeed);
+        }
+      if (transform.position.y < spawnPos.y - movementAmplitude)
+        {
+          ySpeed = Math.Abs(ySpeed);
+        }
+  }
     void ShootPlayer()
   {
-    // Bullet direcion
-    // Vector3 playerDir = player.transform.position - transform.position;
     EnemyBullet bullet = Instantiate(bulletsPrefab, transform.position, Quaternion.identity);
     bullet.Fire(player.transform);
   }
