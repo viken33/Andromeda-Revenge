@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletType1
   bulletSpeed: 0.2
+  bulletSound: {fileID: 4560811057249360837, guid: 39327e2ff560745ee961ff5c81f338dc, type: 3}
 --- !u!54 &7718236540237646250
 Rigidbody:
   m_ObjectHideFlags: 0

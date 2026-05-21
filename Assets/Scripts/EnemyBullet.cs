@@ -1,37 +1,44 @@
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
 
-  float aliveTimer=5.0f;
+  float aliveTimer = 5.0f;
   private Transform target;
   public float speed = 3.0f;
   Vector3 moveDirection;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+  // Start is called once before the first execution of Update after the MonoBehaviour is created
+  void Start()
+  {
+    try
     {
       target = GameObject.FindWithTag("Player").transform;
       moveDirection = (target.position - transform.position).normalized;
-        
     }
-
-    // Update is called once per frame
-    void Update()
-  {
-      transform.position += moveDirection * speed * Time.deltaTime;
-      
-    
+    catch
+    {
+      throw new System.Exception("no player found");
+    }
   }
 
-    public void Fire(Transform newTarget)
+  // Update is called once per frame
+  void Update()
   {
-        if(target != null)
-      {
+    transform.position += moveDirection * speed * Time.deltaTime;
+
+
+  }
+
+  public void Fire(Transform newTarget)
+  {
+    if (target != null)
+    {
       target = newTarget;
       Debug.Log("Target not null");
       transform.LookAt(target);
-      
-      } 
+
+    }
     Destroy(gameObject, aliveTimer);
   }
 
@@ -39,7 +46,8 @@ public class EnemyBullet : MonoBehaviour
   {
     if (other.CompareTag("Player"))
     {
-      Destroy(other.gameObject);
+      other.GetComponent<PlayerController>().Die();
+      Destroy(gameObject);
     }
   }
 }

@@ -4,20 +4,25 @@ public class PlayerController : MonoBehaviour
 {
 
     // Declare global variables
-    public bool gameover = false;
+    // public bool gameover = false;
     private float horizontalInput;
     private float verticalInput;
     private float xRange = 25;
     private float topY = 12;
     private float lowerY = -12;
     public float speed = 10f;
-
+    public ParticleSystem explosionPrefab;
+    private AudioSource audioS;
+    // public AudioSource bulletSound;
+    public AudioSource deathSound;
+    public AudioClip bulletSound;
+    private Vector3 movementVector;
     public BulletType1 bulletPrefabs;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        audioS = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -26,9 +31,10 @@ public class PlayerController : MonoBehaviour
      // set up movement with arrow keys and keys for shooting and powerups   
       horizontalInput = Input.GetAxis("Horizontal");
       verticalInput = Input.GetAxis("Vertical");
+      movementVector = new Vector3(horizontalInput, verticalInput, 0).normalized;
 
-      transform.Translate(Vector3.forward * horizontalInput * Time.deltaTime * speed);
-      transform.Translate(Vector3.up * verticalInput * Time.deltaTime * speed);
+      transform.Translate(movementVector * Time.deltaTime * speed, Space.World);
+      // transform.Translate(Vector3.up * verticalInput * Time.deltaTime * speed);
 
     //Bounds controlls
   {
@@ -53,12 +59,14 @@ public class PlayerController : MonoBehaviour
     }
   }
 
-      if (Input.GetKeyDown(KeyCode.K) && ! gameover )
+      if (Input.GetKeyDown(KeyCode.K) && ! GameManager.Instance.gameover )
     {
       Instantiate(bulletPrefabs, transform.position, bulletPrefabs.transform.rotation);
+      // Instantiate(bulletSound);
+      audioS.PlayOneShot(bulletSound);
     }
 
-      if (Input.GetKeyDown(KeyCode.L) && ! gameover )
+      if (Input.GetKeyDown(KeyCode.L) && ! GameManager.Instance.gameover )
     {
       // powerup
     }
@@ -72,6 +80,13 @@ public class PlayerController : MonoBehaviour
     
   }
 
+  public void Die()
+  {
+    Instantiate(explosionPrefab, transform.position, transform.rotation);
+    Instantiate(deathSound);
+    Destroy(gameObject);
+    GameManager.Instance.gameover = true;
+  }
 
   //
 }

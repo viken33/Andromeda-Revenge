@@ -18,6 +18,9 @@ public class Background : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      if (GameManager.Instance.gameTime < -10 ) {return;}
+
+    
       transform.Translate(Time.deltaTime * xSpeed , 0 , 0);
       if (transform.position.x <= initialX - (size))
     {

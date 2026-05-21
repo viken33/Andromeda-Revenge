@@ -1346,8 +1346,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyType2
   ySpeed: -5
-  xSpeed: -5
-  movementAmplitud: 3
+  xSpeed: -8
+  movementAmplitude: 3
   bulletsPrefab: {fileID: 4065943096394748460, guid: 617b2a888ec764ebeac2255b2cd9d34d, type: 3}
   player: {fileID: 4580902376273437796, guid: d55533194cc5546d79b26f603fb878de, type: 3}
 --- !u!114 &514238465201677987

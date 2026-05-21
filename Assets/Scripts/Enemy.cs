@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -22,7 +21,7 @@ public class Enemy : MonoBehaviour
   {
     if (other.CompareTag("Player"))
     {
-      Destroy(other.gameObject);
+      other.GetComponent<PlayerController>().Die();
     }
   }
   

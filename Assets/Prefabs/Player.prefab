@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4580902376273437796}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1, z: 13.95}
+  m_LocalPosition: {x: 0, y: 1, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -133,8 +133,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b250e9f02b0f4d2b9a2a07da588f0e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  gameover: 0
   speed: 20
+  explosionPrefab: {fileID: 0}
+  deathSound: {fileID: 0}
+  bulletSound: {fileID: 0}
   bulletPrefabs: {fileID: -4654013352984322465, guid: ca0e4d5e6bf3c43e5aa45a0b2f49d3fe, type: 3}
 --- !u!65 &1990866060116041817
 BoxCollider:

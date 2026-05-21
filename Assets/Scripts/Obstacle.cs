@@ -22,7 +22,7 @@ public class Obstacle : MonoBehaviour
   {
     if (other.CompareTag("Player"))
     {
-      Destroy(other.gameObject);
+      other.GetComponent<PlayerController>().Die();
     }
   }
 }
