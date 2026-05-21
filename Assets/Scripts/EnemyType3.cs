@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyType3 : Enemy
+public class EnemyType3 : Enemy // INHERITANCE
 {
 
   public float speed = 5;
@@ -12,7 +12,6 @@ public class EnemyType3 : Enemy
       player = GameObject.Find("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
      Move();       
@@ -20,22 +19,16 @@ public class EnemyType3 : Enemy
      
     }
 
-  protected override void Move()
+  protected override void Move() // POLYMORPHISM
   {
     // Moves towards the player
      if (player != null) {
     
       Vector3 towardsPlayer = (player.transform.position - transform.position).normalized;
-      print(towardsPlayer);
       transform.Translate(Time.deltaTime * towardsPlayer * speed);
-      // towardsPlayer.z = 0;
-      // Quaternion targetRotation = Quaternion.LookRotation(towardsPlayer);
-      // transform.rotation = targetRotation;
-      // transform.LookAt(player.transform); // testing
       
      } else
     {
-      //  transform.Translate(Time.deltaTime * (-speed),0,0);
       transform.Translate(Time.deltaTime * (-speed),0,0);
     }
 
