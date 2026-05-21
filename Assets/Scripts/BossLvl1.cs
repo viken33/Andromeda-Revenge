@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 using UnityEditor.Rendering;
-public class BossLvl1 : MonoBehaviour
+public class BossLvl1 : Enemy
 {
 
    public EnemyBullet bulletsPrefab;
@@ -39,8 +39,8 @@ public class BossLvl1 : MonoBehaviour
      // if life reaches 0 you boss dies
      if (life == 0)
     {
-    // play a sound
-    // play animation
+    // TODO: play a sound
+    // TODO: play animation
      Destroy(gameObject);
     }   
 
@@ -78,7 +78,7 @@ public class BossLvl1 : MonoBehaviour
           ySpeed = Math.Abs(ySpeed);
         }
   }
-// each bullet collission decrements bosses life
+// each bullet collision decrements bosses life
   void OnTriggerEnter(Collider other)
   {
     if (other.CompareTag("PlayerBullet")){

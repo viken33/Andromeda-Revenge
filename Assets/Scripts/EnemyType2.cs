@@ -23,12 +23,10 @@ public class EnemyType2 : Enemy
 
     // Update is called once per frame
     void Update()
-    {
-       
+    {       
       Move();
 
-
-       shootInterval = UnityEngine.Random.Range(2f, 4f);
+      shootInterval = UnityEngine.Random.Range(1f, 3f);
      if (player && (Time.time > initialTime + shootInterval))
     {
       ShootPlayer();

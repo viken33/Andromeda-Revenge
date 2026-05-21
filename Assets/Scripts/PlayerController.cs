@@ -34,9 +34,9 @@ public class PlayerController : MonoBehaviour
       movementVector = new Vector3(horizontalInput, verticalInput, 0).normalized;
 
       transform.Translate(movementVector * Time.deltaTime * speed, Space.World);
-      // transform.Translate(Vector3.up * verticalInput * Time.deltaTime * speed);
+      
 
-    //Bounds controlls
+    //Boundaries controls
   {
     if (transform.position.x < -xRange)
     {
@@ -62,7 +62,11 @@ public class PlayerController : MonoBehaviour
       if (Input.GetKeyDown(KeyCode.K) && ! GameManager.Instance.gameover )
     {
       Instantiate(bulletPrefabs, transform.position, bulletPrefabs.transform.rotation);
-      // Instantiate(bulletSound);
+      audioS.PlayOneShot(bulletSound);
+    }
+      if (Input.GetButtonDown("Fire1") && ! GameManager.Instance.gameover )
+    {
+      Instantiate(bulletPrefabs, transform.position, bulletPrefabs.transform.rotation);
       audioS.PlayOneShot(bulletSound);
     }
 

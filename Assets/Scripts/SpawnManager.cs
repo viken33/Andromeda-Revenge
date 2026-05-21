@@ -28,11 +28,10 @@ public class SpawnManager : MonoBehaviour
       initialTime = Time.time;
     }
     }
-
-      if (boss != null && GameManager.Instance.gameTime < -10){ boss.SetActive(true); }
+    // we reach the end of the level, setting the level boss active
+    if (boss != null && GameManager.Instance.gameTime < -10){ boss.SetActive(true); }
    
     
-    // }
     }
     void SpawnObstacle()
   {
@@ -54,7 +53,6 @@ public class SpawnManager : MonoBehaviour
     Vector3 RandomSpawnLocation()
   {
       float spawnPosY = Random.Range(-spawnRange, spawnRange);
-      // float spawnPosZ = Random.Range(-spawnRange, spawnRange);
       Vector3 randomPos = new Vector3(25, spawnPosY, -4);
       return randomPos;
   }

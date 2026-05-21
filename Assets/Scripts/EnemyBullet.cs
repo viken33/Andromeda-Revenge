@@ -8,7 +8,7 @@ public class EnemyBullet : MonoBehaviour
   private Transform target;
   public float speed = 3.0f;
   Vector3 moveDirection;
-  // Start is called once before the first execution of Update after the MonoBehaviour is created
+
   void Start()
   {
     try
