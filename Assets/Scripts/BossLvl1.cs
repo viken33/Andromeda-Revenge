@@ -1,6 +1,6 @@
 using UnityEngine;
 using System;
-using UnityEditor.Rendering;
+
 public class BossLvl1 : Enemy
 {
 
@@ -65,7 +65,7 @@ public class BossLvl1 : Enemy
     Instantiate(misilePrefab, transform.position + new Vector3(0,-2,0), Quaternion.identity);
   }
 
-  void Move()
+  protected override void Move()
   {
     transform.Translate(0, Time.deltaTime * ySpeed, 0);
         
@@ -79,7 +79,7 @@ public class BossLvl1 : Enemy
         }
   }
 // each bullet collision decrements bosses life
-  void OnTriggerEnter(Collider other)
+  protected new void OnTriggerEnter(Collider other)
   {
     if (other.CompareTag("PlayerBullet")){
       life --;
